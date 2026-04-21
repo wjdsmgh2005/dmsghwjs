@@ -35,3 +35,4 @@ meow
 fd
 QXG556d
 gimttt
+play cs2
