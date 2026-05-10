@@ -50,3 +50,4 @@ dmsql say meow
 dmlowiq
 newdesk
 ohemea
+D
