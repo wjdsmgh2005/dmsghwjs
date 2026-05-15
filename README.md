@@ -55,3 +55,4 @@ ahah
 QNfldzmf difm
 i am sik
 play cs2
+only use aimbot
