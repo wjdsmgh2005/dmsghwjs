@@ -8,280 +8,286 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#0D2B6B;font-family:'Noto Sans KR',sans-serif}
+
 .deck{width:100%;height:100vh;position:relative}
-.slide{position:absolute;inset:0;display:none;flex-direction:column;opacity:0;transition:opacity .35s}
-.slide.active{display:flex;opacity:1}
+.slide{position:absolute;inset:0;display:none;flex-direction:column}
+.slide.on{display:flex}
 
 /* 공통 헤더 */
-.s-head{background:#0D2B6B;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.s-head-title{color:#fff;font-size:22px;font-weight:700}
-.s-num{color:#B8D4F7;font-size:13px}
-.s-body{flex:1;padding:28px 48px;overflow:hidden;display:flex;flex-direction:column;gap:14px}
+.hd{background:#0D2B6B;padding:0 44px;height:72px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hd-title{color:#fff;font-size:26px;font-weight:700}
+.hd-n{color:#B8D4F7;font-size:14px}
+.body{flex:1;padding:20px 44px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
 
-/* 슬라이드 1 타이틀 */
-#s1{background:#0D2B6B;justify-content:center;align-items:flex-start;padding:0 80px}
-#s1 .safe-badge{background:#0A7C42;color:#fff;font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;margin-bottom:20px;display:inline-block}
-#s1 h1{font-size:72px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
-#s1 .sub{font-size:22px;color:#B8D4F7;margin-bottom:8px}
-#s1 .tech{font-size:14px;color:#5A7AAA;margin-bottom:32px}
-#s1 .badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-#s1 .badge{background:rgba(26,111,212,.3);border:1px solid rgba(184,212,247,.3);color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;text-align:center}
-#s1 .badge span{display:block;font-size:11px;color:#B8D4F7;margin-top:2px}
-#s1 .info{color:#5A7AAA;font-size:13px}
+/* ── 슬1 타이틀 ── */
+#s1{background:#0D2B6B;padding:0 72px;justify-content:center}
+.s1-badge{background:#0A7C42;color:#fff;font-size:12px;font-weight:700;padding:6px 18px;border-radius:20px;display:inline-block;margin-bottom:18px}
+.s1-title{font-size:74px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px}
+.s1-sub{font-size:26px;color:#B8D4F7;margin-bottom:8px}
+.s1-tech{font-size:14px;color:#5A7AAA;margin-bottom:28px}
+.s1-badges{display:flex;gap:12px;margin-bottom:28px}
+.s1-badge2{background:rgba(26,111,212,.35);border:1.5px solid rgba(184,212,247,.3);color:#fff;padding:12px 22px;border-radius:8px;font-size:15px;font-weight:700;text-align:center;min-width:160px}
+.s1-badge2 span{display:block;font-size:12px;color:#B8D4F7;font-weight:400;margin-top:4px}
+.s1-info{color:#334466;font-size:14px}
 
-/* 슬라이드 2 비전 */
+/* ── 슬2 비전 ── */
 #s2{background:#fff}
-.vision-box{background:#0D2B6B;border-radius:8px;padding:18px 24px;color:#fff;font-size:17px;font-style:italic;font-weight:500;text-align:center;line-height:1.6}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
-.prob-section{display:flex;flex-direction:column;gap:0}
-.prob-head{background:#C0392B;color:#fff;border-radius:8px 8px 0 0;padding:9px 14px;font-size:12px;font-weight:700;text-align:center}
-.prob-item{background:#FFF5F5;border:1px solid #F5C0C0;border-top:none;padding:10px 14px}
+.vision{background:#0D2B6B;border-radius:8px;padding:20px 28px;color:#fff;font-size:19px;font-weight:700;font-style:italic;text-align:center;line-height:1.6}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1}
+.col-section{display:flex;flex-direction:column}
+.col-head{padding:11px 16px;font-size:15px;font-weight:700;color:#fff;text-align:center;border-radius:8px 8px 0 0}
+.col-head.red{background:#C0392B}
+.col-head.green{background:#0A7C42}
+.prob-item{background:#FFF5F5;border:1px solid #F0C0C0;border-top:none;padding:12px 16px}
 .prob-item:last-child{border-radius:0 0 8px 8px}
-.prob-title{font-size:12px;font-weight:700;color:#7B1E1E;margin-bottom:3px}
-.prob-desc{font-size:11px;color:#A33030;line-height:1.5}
-.sol-section{display:flex;flex-direction:column;gap:0}
-.sol-head{background:#0A7C42;color:#fff;border-radius:8px 8px 0 0;padding:9px 14px;font-size:12px;font-weight:700;text-align:center}
-.sol-item{background:#E6F7EF;border:1px solid #A8D5B7;border-top:none;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.prob-item-t{font-size:14px;font-weight:700;color:#1A1E2E;margin-bottom:4px;border-left:4px solid #C0392B;padding-left:8px}
+.prob-item-d{font-size:12px;color:#8B3030;line-height:1.6;padding-left:12px}
+.sol-item{background:#F0FAF5;border:1px solid #A8D5B7;border-top:none;padding:11px 16px;display:flex;align-items:center;gap:10px}
 .sol-item:last-child{border-radius:0 0 8px 8px}
-.sol-v{background:#0A7C42;color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;flex-shrink:0}
-.sol-text{font-size:11px;color:#085041;line-height:1.4}
-.sol-text strong{font-weight:700;display:block;font-size:12px;color:#0A7C42}
+.sol-v{background:#0A7C42;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+.sol-t{font-size:13px;font-weight:700;color:#0A7C42;min-width:120px}
+.sol-d{font-size:12px;color:#5A6480;line-height:1.4}
 
-/* 슬라이드 3 WBS */
+/* ── 슬3 WBS ── */
 #s3{background:#fff}
-.two-col-wbs{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
-.wbs-list{display:flex;flex-direction:column;gap:4px}
-.wbs-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;background:#F4F6FB}
-.wbs-week{min-width:90px;font-size:10px;font-weight:700;color:#fff;background:#1A6FD4;border-radius:4px;padding:4px 8px;text-align:center}
-.wbs-content{flex:1}
-.wbs-task{font-size:12px;font-weight:700;color:#1A1E2E;margin-bottom:1px}
-.wbs-detail{font-size:10px;color:#9AA3BB}
-.tech-list{display:flex;flex-direction:column;gap:5px}
-.tech-item{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:center;padding:7px 10px;background:#F4F6FB;border-radius:6px}
-.tech-layer{font-size:10px;font-weight:700;color:#fff;background:#0D2B6B;border-radius:4px;padding:4px 6px;text-align:center}
-.tech-name{font-size:12px;font-weight:700;color:#1A1E2E}
-.tech-desc{font-size:10px;color:#9AA3BB}
+.two-col-3{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1}
+.sec-title{font-size:16px;font-weight:700;color:#0D2B6B;margin-bottom:8px}
+.wbs-item{display:flex;align-items:stretch;gap:0;margin-bottom:5px;border-radius:6px;overflow:hidden}
+.wbs-wk{min-width:108px;padding:10px 8px;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.wbs-content{flex:1;background:#F4F6FB;border:1px solid #E8EEF7;border-left:none;padding:8px 12px}
+.wbs-t{font-size:13px;font-weight:700;color:#1A1E2E;margin-bottom:2px}
+.wbs-d{font-size:11px;color:#9AA3BB}
+.tech-item{display:flex;align-items:stretch;gap:0;margin-bottom:5px;border-radius:6px;overflow:hidden}
+.tech-layer{min-width:108px;background:#0D2B6B;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 6px;line-height:1.3}
+.tech-content{flex:1;background:#E8F1FD;border:1px solid #B8D4F7;border-left:none;padding:8px 12px}
+.tech-name{font-size:13px;font-weight:700;color:#0D2B6B;margin-bottom:2px}
+.tech-desc{font-size:11px;color:#5A6480}
 
-/* 슬라이드 4 구현 */
+/* ── 슬4 구현 ── */
 #s4{background:#fff}
-.three-col{display:grid;grid-template-columns:200px 1fr;gap:14px;flex:1}
-.arch-list{display:flex;flex-direction:column;gap:2px}
-.arch-item{padding:12px 14px;border-radius:6px;color:#fff}
-.arch-name{font-size:12px;font-weight:700;margin-bottom:2px}
-.arch-sub{font-size:10px;opacity:.8}
-.features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;align-content:start}
+.two-col-4{display:grid;grid-template-columns:220px 1fr;gap:14px;flex:1}
+.arch-sec{display:flex;flex-direction:column;gap:0}
+.arch-label{font-size:15px;font-weight:700;color:#0D2B6B;margin-bottom:8px}
+.arch-item{padding:14px 16px;color:#fff;margin-bottom:2px;border-radius:4px}
+.arch-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.arch-sub{font-size:11px;opacity:.75}
+.arch-arrow{text-align:center;font-size:16px;color:#9AA3BB;margin:1px 0}
+.right-sec{display:flex;flex-direction:column;gap:10px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .feat-card{border-radius:8px;overflow:hidden}
-.feat-head{padding:8px 10px;font-size:11px;font-weight:700;color:#fff}
-.feat-body{padding:8px 10px;font-size:11px;color:#5A6480;line-height:1.5;background:#F4F6FB;border:1px solid #E8EEF7;border-top:none;border-radius:0 0 8px 8px}
-.trial-box{background:#FDF3E3;border:1px solid #F5C07A;border-radius:8px;padding:10px 14px;font-size:11px;color:#633806;line-height:1.6}
-.trial-box strong{font-weight:700;color:#D4820A}
+.feat-hd{padding:10px 12px;display:flex;align-items:center;gap:6px}
+.feat-badge{background:rgba(0,0,0,.25);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px}
+.feat-name{font-size:13px;font-weight:700;color:#fff}
+.feat-body{background:#F4F6FB;border:1px solid #E8EEF7;border-top:none;padding:10px 12px;font-size:12px;color:#5A6480;line-height:1.5;border-radius:0 0 8px 8px}
+.trial-box{background:#FDF3E3;border:1.5px solid #F5C07A;border-radius:8px;padding:12px 16px;font-size:12px;color:#633806;line-height:1.7}
+.trial-box strong{color:#D4820A;font-weight:700}
 
-/* 슬라이드 5 시연 */
+/* ── 슬5 시연 ── */
 #s5{background:#fff}
-.demo-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
-.yt-area{display:flex;flex-direction:column;gap:10px}
-.yt-btn{background:#FF0000;color:#fff;border:none;border-radius:10px;padding:0;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;flex:1;min-height:60px}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
+.yt-col{display:flex;flex-direction:column;gap:10px}
+.yt-main{flex:1;background:#1A2540;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none}
+.yt-circle{width:80px;height:80px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;color:#fff}
+.yt-main-t{font-size:18px;color:#fff;font-weight:700}
+.yt-main-s{font-size:13px;color:#B8D4F7}
+.yt-btn{background:#FF0000;color:#fff;border:none;border-radius:10px;padding:16px;font-family:'Noto Sans KR',sans-serif;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
 .yt-btn:hover{background:#CC0000}
-.yt-thumb{flex:1;background:#1A2540;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;text-decoration:none}
-.yt-play{width:60px;height:60px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-.yt-label{color:#B8D4F7;font-size:14px;font-weight:500}
-.yt-sub{color:#5A7AAA;font-size:12px}
-.scenario-list{display:flex;flex-direction:column;gap:6px}
-.sc-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#F4F6FB;border-radius:8px}
-.sc-num{width:24px;height:24px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.sc-title{font-size:12px;font-weight:700;color:#1A1E2E;margin-bottom:2px}
-.sc-desc{font-size:11px;color:#5A6480}
-.impact-box{background:#E6F7EF;border:1px solid #A8D5B7;border-radius:8px;padding:10px 14px;font-size:12px;color:#085041;line-height:1.6}
+.sc-col{display:flex;flex-direction:column;gap:6px}
+.sc-label{font-size:16px;font-weight:700;color:#0D2B6B;margin-bottom:2px}
+.sc-item{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F4F6FB;border-radius:8px;border:1px solid #E8EEF7}
+.sc-n{width:32px;height:32px;border-radius:50%;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-t{font-size:13px;font-weight:700;color:#1A1E2E}
+.sc-d{font-size:12px;color:#5A6480}
+.sc-item.highlight{background:#FDF3E3;border-color:#F5C07A}
+.impact{background:#E6F7EF;border:1.5px solid #A8D5B7;border-radius:8px;padding:12px 14px;font-size:13px;color:#085041;line-height:1.6}
 
-/* 슬라이드 6 개발환경 */
+/* ── 슬6 개발환경 ── */
 #s6{background:#fff}
-.four-section{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;flex:1}
-.env-card{background:#F4F6FB;border-radius:8px;padding:12px 14px}
-.env-card-title{font-size:12px;font-weight:700;color:#0D2B6B;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.code-box{background:#1A2540;border-radius:6px;padding:10px 12px}
-.code-box p{font-family:monospace;font-size:11px;color:#4A9EFF;line-height:1.8}
-.build-steps{display:flex;flex-direction:column;gap:4px}
-.build-step{display:flex;align-items:center;gap:8px}
-.build-n{width:22px;height:22px;background:#1A6FD4;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.build-text{font-size:11px;color:#1A1E2E;line-height:1.4}
-.test-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
-.test-badge{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
-.test-desc{font-size:11px;color:#1A1E2E}
-.adr-list{display:flex;flex-direction:column;gap:5px}
-.adr-item{background:#E8F1FD;border:1px solid #B5D4F4;border-radius:6px;padding:8px 10px}
-.adr-name{font-size:11px;font-weight:700;color:#0C447C;margin-bottom:2px}
-.adr-why{font-size:10px;color:#185FA5}
-.adr-trade{font-size:10px;color:#D4820A}
+.four-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;flex:1}
+.env-card{background:#F4F6FB;border:1px solid #E8EEF7;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.env-t{font-size:14px;font-weight:700;color:#0D2B6B;padding-bottom:6px;border-bottom:2px solid #0D2B6B}
+.code-block{background:#1A2540;border-radius:6px;padding:12px 14px;flex:1}
+.code-block p{font-family:monospace;font-size:12px;color:#4A9EFF;line-height:2}
+.build-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.build-step:last-child{margin-bottom:0}
+.build-n{width:26px;height:26px;background:#1A6FD4;color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.build-t{font-size:13px;font-weight:700;color:#1A1E2E;margin-bottom:2px}
+.build-d{font-size:11px;color:#5A6480}
+.test-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.test-row:last-child{margin-bottom:0}
+.test-badge{padding:5px 10px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+.test-txt{font-size:12px;color:#1A1E2E;line-height:1.5}
+.adr-item{background:#E8F1FD;border:1px solid #B5D4F4;border-radius:6px;padding:10px 12px;margin-bottom:6px}
+.adr-item:last-child{margin-bottom:0}
+.adr-name{font-size:12px;font-weight:700;color:#0C447C;margin-bottom:3px}
+.adr-why{font-size:11px;color:#185FA5;margin-bottom:2px}
+.adr-trade{font-size:11px;color:#D4820A}
 
-/* 슬라이드 7 마무리 */
-#s7{background:#0D2B6B;justify-content:center;padding:0 60px}
-#s7 h2{color:#fff;font-size:32px;font-weight:900;margin-bottom:24px}
-.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+/* ── 슬7 마무리 ── */
+#s7{background:#0D2B6B;padding:0 52px;justify-content:center}
+.s7-title{font-size:38px;font-weight:900;color:#fff;margin-bottom:20px}
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
 .plan-card{border-radius:8px;overflow:hidden}
-.plan-head{padding:10px 14px;font-size:12px;font-weight:700;color:#fff;text-align:center}
-.plan-body{padding:12px 14px;font-size:12px;color:#fff;line-height:1.8;background:rgba(255,255,255,.08)}
-.expect-box{background:rgba(10,124,66,.25);border:1px solid rgba(168,213,183,.3);border-radius:8px;padding:12px 16px;font-size:13px;color:#9FE1CB;text-align:center;margin-bottom:12px}
-.lesson-box{background:rgba(255,255,255,.08);border:1px solid rgba(184,212,247,.15);border-radius:8px;padding:12px 16px;font-size:12px;color:#B8D4F7;line-height:1.8}
-.thanks{text-align:center;color:#5A7AAA;font-size:13px;margin-top:16px}
+.plan-hd{padding:12px 16px;font-size:14px;font-weight:700;color:#fff;text-align:center}
+.plan-body{padding:14px 16px;font-size:13px;color:#fff;line-height:1.9;background:rgba(255,255,255,.08)}
+.expect{background:rgba(10,124,66,.25);border:1px solid rgba(168,213,183,.35);border-radius:8px;padding:13px 18px;font-size:14px;color:#9FE1CB;text-align:center;margin-bottom:10px}
+.lesson{background:rgba(255,255,255,.08);border:1px solid rgba(184,212,247,.2);border-radius:8px;padding:13px 18px;font-size:13px;color:#B8D4F7;line-height:1.8}
+.thanks{text-align:center;color:#334466;font-size:14px;margin-top:14px}
 
-/* 네비게이션 */
-.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;z-index:100}
-.nav-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;backdrop-filter:blur(4px)}
-.nav-btn:hover{background:rgba(255,255,255,.3)}
-.nav-dots{display:flex;gap:6px;align-items:center}
+/* 네비 */
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;z-index:100}
+.nbtn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.nbtn:hover{background:rgba(255,255,255,.3)}
+.dots{display:flex;gap:6px;align-items:center}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .15s}
-.dot.active{background:#fff;width:22px;border-radius:4px}
-.slide-counter{color:rgba(255,255,255,.6);font-size:12px;min-width:40px;text-align:center}
-
-/* 키보드 힌트 */
-.hint{position:fixed;top:16px;right:20px;color:rgba(255,255,255,.35);font-size:11px;z-index:100}
+.dot.on{background:#fff;width:24px;border-radius:4px}
+.counter{color:rgba(255,255,255,.55);font-size:13px;min-width:44px;text-align:center}
+.hint{position:fixed;top:14px;right:18px;color:rgba(255,255,255,.3);font-size:12px;z-index:100}
 </style>
 </head>
 <body>
-
 <div class="deck" id="deck">
 
-<!-- 슬라이드 1 -->
+<!-- 슬1 타이틀 -->
 <div class="slide" id="s1">
-  <div class="safe-badge">사기 방지 특화 플랫폼 · 15주차 최종 발표</div>
-  <h1>당근나라<br>PC(피씨)</h1>
-  <div class="sub">컴퓨터 주변기기 중고거래 — 안전이 최우선</div>
-  <div class="tech">React Native(리액트 네이티브) · Firebase(파이어베이스) · Zustand(주스탠드) · Expo EAS(엑스포 이에이에스)</div>
-  <div class="badges">
-    <div class="badge">Must 7/7<span>완료</span></div>
-    <div class="badge">Should 5/5<span>완료</span></div>
-    <div class="badge">에스크로<span>구현</span></div>
-    <div class="badge">AI(에이아이) 사기탐지<span>구현</span></div>
+  <div style="position:absolute;top:0;right:0;width:320px;height:320px;background:rgba(26,111,212,.15);border-radius:50%;transform:translate(30%,-30%)"></div>
+  <div style="position:absolute;bottom:0;left:0;width:220px;height:220px;background:rgba(184,212,247,.08);border-radius:50%;transform:translate(-30%,30%)"></div>
+  <div style="position:relative;z-index:1">
+    <div class="s1-badge">사기 방지 특화 플랫폼 · 15주차 최종 발표</div>
+    <div class="s1-title">당근나라 PC(피씨)</div>
+    <div class="s1-sub">컴퓨터 주변기기 중고거래 — 안전이 최우선</div>
+    <div class="s1-tech">React Native(리액트 네이티브) · Firebase(파이어베이스) · Zustand(주스탠드) · Expo EAS(엑스포 이에이에스)</div>
+    <div class="s1-badges">
+      <div class="s1-badge2">Must 7/7<span>완료</span></div>
+      <div class="s1-badge2">Should 5/5<span>완료</span></div>
+      <div class="s1-badge2">에스크로<span>구현</span></div>
+      <div class="s1-badge2">AI(에이아이) 사기탐지<span>구현</span></div>
+    </div>
+    <div class="s1-info">3학년 C반 | 2024136081 | 전은호</div>
   </div>
-  <div class="info">3학년 C반 | 2024136081 | 전은호</div>
 </div>
 
-<!-- 슬라이드 2 -->
+<!-- 슬2 비전 -->
 <div class="slide" id="s2">
-  <div class="s-head"><div class="s-head-title">비전 & 문제 정의</div><div class="s-num">2 / 7</div></div>
-  <div class="s-body">
-    <div class="vision-box">"내가 직접 중고거래 사기를 당했다 — 나 같은 피해자가 없는 세상을 만든다"</div>
+  <div class="hd"><div class="hd-title">비전 & 문제 정의</div><div class="hd-n">2 / 7</div></div>
+  <div class="body">
+    <div class="vision">"내가 직접 중고거래 사기를 당했다 — 나 같은 피해자가 없는 세상을 만든다"</div>
     <div class="two-col">
-      <div class="prob-section">
-        <div class="prob-head">기존 중고거래 3가지 문제</div>
-        <div class="prob-item"><div class="prob-title">PC(피씨) 부품 전문 카테고리 부재</div><div class="prob-desc">GPU(지피유)·마우스·키보드를 한 카테고리로 묶어 세분화 검색·필터링 불가능</div></div>
-        <div class="prob-item"><div class="prob-title">판매자 신뢰도 확인 불가</div><div class="prob-desc">사기 이력·신고 건수·매너온도를 거래 전 확인하는 수단 없음</div></div>
-        <div class="prob-item"><div class="prob-title">에스크로 없이 선입금 요구</div><div class="prob-desc">입금 후 잠수 — 연간 피해액 수백억 원<br><strong>(내가 직접 피해자가 됐음)</strong></div></div>
+      <div class="col-section">
+        <div class="col-head red">기존 중고거래 3가지 문제</div>
+        <div class="prob-item"><div class="prob-item-t">PC(피씨) 부품 전문 카테고리 부재</div><div class="prob-item-d">GPU(지피유)·마우스·키보드를 한 카테고리로 묶어<br>세분화 검색·필터링 불가능</div></div>
+        <div class="prob-item"><div class="prob-item-t">판매자 신뢰도 확인 불가</div><div class="prob-item-d">사기 이력·신고 건수·매너온도를<br>거래 전 확인하는 수단 없음</div></div>
+        <div class="prob-item" style="flex:1"><div class="prob-item-t">에스크로 없이 선입금 요구</div><div class="prob-item-d">입금 후 잠수 — 연간 피해액 수백억 원<br><strong style="color:#C0392B">(내가 직접 피해자가 됐음)</strong></div></div>
       </div>
-      <div class="sol-section">
-        <div class="sol-head">당근나라 PC(피씨)의 해결책</div>
-        <div class="sol-item"><div class="sol-v">V</div><div class="sol-text"><strong>8개 전문 카테고리</strong>GPU(지피유), 마우스, 키보드 등 세분화 필터</div></div>
-        <div class="sol-item"><div class="sol-v">V</div><div class="sol-text"><strong>안전 점수 0~100</strong>신뢰등급+에스크로+신고이력 자동 계산</div></div>
-        <div class="sol-item"><div class="sol-v">V</div><div class="sol-text"><strong>에스크로 4단계</strong>예치→발송→수령확인→대금지급</div></div>
-        <div class="sol-item"><div class="sol-v">V</div><div class="sol-text"><strong>AI(에이아이) 사기 탐지</strong>채팅 키워드 실시간 감지·경고</div></div>
-        <div class="sol-item"><div class="sol-v">V</div><div class="sol-text"><strong>가격 제안 기능</strong>구매자가 원하는 가격 직접 제안</div></div>
+      <div class="col-section">
+        <div class="col-head green">당근나라 PC(피씨)의 해결책</div>
+        <div class="sol-item"><div class="sol-v">V</div><div class="sol-t">8개 전문 카테고리</div><div class="sol-d">GPU(지피유), 마우스, 키보드 등 세분화 필터</div></div>
+        <div class="sol-item"><div class="sol-v">V</div><div class="sol-t">안전 점수 0~100</div><div class="sol-d">신뢰등급+에스크로+신고이력 자동 계산</div></div>
+        <div class="sol-item"><div class="sol-v">V</div><div class="sol-t">에스크로 4단계</div><div class="sol-d">예치→발송→수령확인→대금지급</div></div>
+        <div class="sol-item"><div class="sol-v">V</div><div class="sol-t">AI(에이아이) 사기 탐지</div><div class="sol-d">채팅 키워드 실시간 감지·경고</div></div>
+        <div class="sol-item" style="flex:1"><div class="sol-v">V</div><div class="sol-t">가격 제안 기능</div><div class="sol-d">구매자가 원하는 가격 직접 제안</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 슬라이드 3 -->
+<!-- 슬3 WBS -->
 <div class="slide" id="s3">
-  <div class="s-head"><div class="s-head-title">프로젝트 계획 — WBS(더블유비에스) & 기술 스택</div><div class="s-num">3 / 7</div></div>
-  <div class="s-body">
-    <div class="two-col-wbs">
+  <div class="hd"><div class="hd-title">프로젝트 계획 — WBS(더블유비에스) & 기술 스택</div><div class="hd-n">3 / 7</div></div>
+  <div class="body">
+    <div class="two-col-3">
       <div>
-        <div style="font-size:13px;font-weight:700;color:#0D2B6B;margin-bottom:8px">WBS(더블유비에스) 6주</div>
-        <div class="wbs-list">
-          <div class="wbs-item"><div class="wbs-week" style="background:#1A6FD4">1주 (10주차)</div><div class="wbs-content"><div class="wbs-task">기획·요구사항 정의</div><div class="wbs-detail">비전/MoSCoW(모스코)/ADR(에이디알)-0001~0003</div></div></div>
-          <div class="wbs-item"><div class="wbs-week" style="background:#065A82">2주 (11주차)</div><div class="wbs-content"><div class="wbs-task">아키텍처 설계·환경구축</div><div class="wbs-detail">레이어드 구조/Firebase(파이어베이스) 설정</div></div></div>
-          <div class="wbs-item"><div class="wbs-week" style="background:#028090">3주 (12주차)</div><div class="wbs-content"><div class="wbs-task">Must(머스트) 기능 구현 1</div><div class="wbs-detail">상품목록/상세/판매등록/채팅</div></div></div>
-          <div class="wbs-item"><div class="wbs-week" style="background:#0A7C42">4주 (13주차)</div><div class="wbs-content"><div class="wbs-task">Safety(세이프티) 기능 구현 2</div><div class="wbs-detail">에스크로/신뢰등급/AI(에이아이)탐지/신고센터</div></div></div>
-          <div class="wbs-item"><div class="wbs-week" style="background:#1A6FD4">5주 (14주차)</div><div class="wbs-content"><div class="wbs-task">테스트·최적화·배포</div><div class="wbs-detail">단위9개/통합1개/EAS(이에이에스) APK(에이피케이) 빌드</div></div></div>
-          <div class="wbs-item"><div class="wbs-week" style="background:#0D2B6B">6주 (15주차)</div><div class="wbs-content"><div class="wbs-task">최종 발표·마무리</div><div class="wbs-detail">발표자료/README(리드미)/AGENTS.md(에이전츠 닷 엠디)</div></div></div>
-        </div>
+        <div class="sec-title">WBS(더블유비에스) — 6주 일정</div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#1A6FD4">1주<br>(10주차)</div><div class="wbs-content"><div class="wbs-t">기획·요구사항 정의</div><div class="wbs-d">비전/MoSCoW(모스코)/ADR(에이디알)-0001~0003</div></div></div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#065A82">2주<br>(11주차)</div><div class="wbs-content"><div class="wbs-t">아키텍처 설계·환경구축</div><div class="wbs-d">레이어드 구조/Firebase(파이어베이스) 설정</div></div></div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#028090">3주<br>(12주차)</div><div class="wbs-content"><div class="wbs-t">Must(머스트) 기능 구현 1</div><div class="wbs-d">상품목록/상세/판매등록/채팅</div></div></div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#0A7C42">4주<br>(13주차)</div><div class="wbs-content"><div class="wbs-t">Safety(세이프티) 기능 구현 2</div><div class="wbs-d">에스크로/신뢰등급/AI(에이아이)탐지/신고센터</div></div></div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#1A6FD4">5주<br>(14주차)</div><div class="wbs-content"><div class="wbs-t">테스트·최적화·배포</div><div class="wbs-d">단위9개/통합1개/EAS(이에이에스) APK(에이피케이) 빌드</div></div></div>
+        <div class="wbs-item"><div class="wbs-wk" style="background:#0D2B6B">6주<br>(15주차)</div><div class="wbs-content"><div class="wbs-t">최종 발표·마무리</div><div class="wbs-d">발표자료/README(리드미)/AGENTS.md(에이전츠)</div></div></div>
       </div>
       <div>
-        <div style="font-size:13px;font-weight:700;color:#0D2B6B;margin-bottom:8px">기술 스택</div>
-        <div class="tech-list">
-          <div class="tech-item"><div class="tech-layer">Presentation(프리젠테이션)</div><div><div class="tech-name">React Native(리액트 네이티브) + Expo(엑스포)</div><div class="tech-desc">크로스플랫폼 UI(유아이)</div></div></div>
-          <div class="tech-item"><div class="tech-layer">Application(어플리케이션)</div><div><div class="tech-name">Zustand(주스탠드)</div><div class="tech-desc">경량 전역 상태관리</div></div></div>
-          <div class="tech-item"><div class="tech-layer">Domain(도메인)</div><div><div class="tech-name">TypeScript(타입스크립트) Entities(엔티티)</div><div class="tech-desc">타입 안전 도메인 모델</div></div></div>
-          <div class="tech-item"><div class="tech-layer">Data(데이터)</div><div><div class="tech-name">Firebase Firestore(파이어베이스 파이어스토어)</div><div class="tech-desc">실시간 DB(디비) + 인증</div></div></div>
-          <div class="tech-item"><div class="tech-layer">Build(빌드)</div><div><div class="tech-name">Expo EAS Build(엑스포 이에이에스 빌드)</div><div class="tech-desc">APK(에이피케이) 자동 빌드</div></div></div>
-        </div>
+        <div class="sec-title">기술 스택</div>
+        <div class="tech-item"><div class="tech-layer">Presentation<br>(프리젠테이션)</div><div class="tech-content"><div class="tech-name">React Native(리액트 네이티브) + Expo(엑스포)</div><div class="tech-desc">크로스플랫폼 UI(유아이)</div></div></div>
+        <div class="tech-item"><div class="tech-layer">Application<br>(어플리케이션)</div><div class="tech-content"><div class="tech-name">Zustand(주스탠드)</div><div class="tech-desc">경량 전역 상태관리</div></div></div>
+        <div class="tech-item"><div class="tech-layer">Domain<br>(도메인)</div><div class="tech-content"><div class="tech-name">TypeScript(타입스크립트) Entities</div><div class="tech-desc">타입 안전 도메인 모델</div></div></div>
+        <div class="tech-item"><div class="tech-layer">Data<br>(데이터)</div><div class="tech-content"><div class="tech-name">Firebase Firestore(파이어스토어)</div><div class="tech-desc">실시간 DB(디비) + 인증</div></div></div>
+        <div class="tech-item"><div class="tech-layer">Build<br>(빌드)</div><div class="tech-content"><div class="tech-name">Expo EAS Build(이에이에스 빌드)</div><div class="tech-desc">APK(에이피케이) 자동 빌드</div></div></div>
+        <div class="tech-item"><div class="tech-layer">Storage<br>(스토리지)</div><div class="tech-content"><div class="tech-name">Firebase Storage(파이어베이스)</div><div class="tech-desc">이미지 업로드</div></div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 슬라이드 4 -->
+<!-- 슬4 구현 -->
 <div class="slide" id="s4">
-  <div class="s-head"><div class="s-head-title">구현 내용 · 아키텍처 · 시행착오</div><div class="s-num">4 / 7</div></div>
-  <div class="s-body">
-    <div class="three-col">
-      <div>
-        <div style="font-size:12px;font-weight:700;color:#0D2B6B;margin-bottom:8px">레이어드 아키텍처</div>
-        <div class="arch-list">
-          <div class="arch-item" style="background:#1A6FD4;margin-bottom:2px"><div class="arch-name">Presentation(프리젠테이션)</div><div class="arch-sub">screens(스크린) / components(컴포넌트)</div></div>
-          <div style="text-align:center;color:#9AA3BB;font-size:14px;margin:1px 0">↓</div>
-          <div class="arch-item" style="background:#065A82;margin-bottom:2px"><div class="arch-name">Application(어플리케이션)</div><div class="arch-sub">viewModels(뷰모델) / useCases(유즈케이스)</div></div>
-          <div style="text-align:center;color:#9AA3BB;font-size:14px;margin:1px 0">↓</div>
-          <div class="arch-item" style="background:#028090;margin-bottom:2px"><div class="arch-name">Domain(도메인)</div><div class="arch-sub">entities(엔티티) / services(서비스)</div></div>
-          <div style="text-align:center;color:#9AA3BB;font-size:14px;margin:1px 0">↓</div>
-          <div class="arch-item" style="background:#0D2B6B"><div class="arch-name">Data(데이터)</div><div class="arch-sub">Firebase(파이어베이스) / AsyncStorage(어싱크스토리지)</div></div>
-        </div>
+  <div class="hd"><div class="hd-title">구현 내용 · 아키텍처 · 시행착오</div><div class="hd-n">4 / 7</div></div>
+  <div class="body">
+    <div class="two-col-4">
+      <div class="arch-sec">
+        <div class="arch-label">레이어드 아키텍처</div>
+        <div class="arch-item" style="background:#1A6FD4"><div class="arch-name">Presentation(프리젠테이션)</div><div class="arch-sub">screens / components</div></div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-item" style="background:#065A82"><div class="arch-name">Application(어플리케이션)</div><div class="arch-sub">viewModels / useCases</div></div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-item" style="background:#028090"><div class="arch-name">Domain(도메인)</div><div class="arch-sub">entities / services</div></div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-item" style="background:#0D2B6B"><div class="arch-name">Data(데이터)</div><div class="arch-sub">Firebase / AsyncStorage</div></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="font-size:12px;font-weight:700;color:#0D2B6B">핵심 구현 기능 (안전 특화)</div>
-        <div class="features-grid">
-          <div class="feat-card"><div class="feat-head" style="background:#0A7C42">핵심 — 안전 점수</div><div class="feat-body">신뢰등급+에스크로+신고 0~100 자동 계산</div></div>
-          <div class="feat-card"><div class="feat-head" style="background:#1A6FD4">핵심 — 에스크로 4단계</div><div class="feat-body">예치→발송→확인→지급 사기 원천 차단</div></div>
-          <div class="feat-card"><div class="feat-head" style="background:#E65100">핵심 — AI(에이아이) 탐지</div><div class="feat-body">채팅 키워드 실시간 자동 경고 삽입</div></div>
-          <div class="feat-card"><div class="feat-head" style="background:#0A7C42">신규 — 가격 제안</div><div class="feat-body">구매자 희망가격 직접 제안 전송</div></div>
-          <div class="feat-card"><div class="feat-head" style="background:#C0392B">신규 — 후기 & 신고</div><div class="feat-body">별점+텍스트 후기 5가지 사유 신고</div></div>
-          <div class="feat-card"><div class="feat-head" style="background:#1A6FD4">신규 — 안전 장소</div><div class="feat-body">편의점·경찰서 거래 장소 안내</div></div>
+      <div class="right-sec">
+        <div style="font-size:15px;font-weight:700;color:#0D2B6B">핵심 구현 기능 (안전 특화)</div>
+        <div class="feat-grid">
+          <div class="feat-card"><div class="feat-hd" style="background:#0A7C42"><span class="feat-badge">핵심</span><span class="feat-name">안전 점수</span></div><div class="feat-body">신뢰등급+에스크로+신고<br>0~100 자동 계산</div></div>
+          <div class="feat-card"><div class="feat-hd" style="background:#1A6FD4"><span class="feat-badge">핵심</span><span class="feat-name">에스크로 4단계</span></div><div class="feat-body">예치→발송→확인→지급<br>사기 원천 차단</div></div>
+          <div class="feat-card"><div class="feat-hd" style="background:#C0392B"><span class="feat-badge">핵심</span><span class="feat-name">AI(에이아이) 탐지</span></div><div class="feat-body">채팅 키워드 실시간<br>자동 경고 삽입</div></div>
+          <div class="feat-card"><div class="feat-hd" style="background:#0A7C42"><span class="feat-badge">신규</span><span class="feat-name">가격 제안</span></div><div class="feat-body">구매자 희망가격<br>직접 제안 전송</div></div>
+          <div class="feat-card"><div class="feat-hd" style="background:#C0392B"><span class="feat-badge">신규</span><span class="feat-name">후기 & 신고</span></div><div class="feat-body">별점+텍스트 후기<br>5가지 사유 신고</div></div>
+          <div class="feat-card"><div class="feat-hd" style="background:#1A6FD4"><span class="feat-badge">신규</span><span class="feat-name">안전 장소</span></div><div class="feat-body">편의점·경찰서<br>거래 장소 안내</div></div>
         </div>
         <div class="trial-box">
-          <strong>시행착오 ①</strong> Firestore(파이어스토어) onSnapshot(온스냅샷) 미해제 → 메모리 누수. useEffect(유즈이펙트) cleanup(클린업) 패턴으로 해결.<br>
-          <strong>시행착오 ②</strong> 안전점수 매 렌더링 계산 → 성능 저하. 저장 시 미리 계산 → 렌더링 60% 개선.
+          <strong>시행착오 ①</strong> Firestore(파이어스토어) onSnapshot(온스냅샷) 미해제 → 메모리 누수 &nbsp;
+          해결: useEffect(유즈이펙트) cleanup(클린업) 패턴 적용<br>
+          <strong>시행착오 ②</strong> 안전점수 매 렌더링 계산 → 성능 저하 &nbsp;
+          해결: 저장 시 미리 계산 → 렌더링 성능 <strong>60% 개선</strong>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 슬라이드 5 -->
+<!-- 슬5 시연 -->
 <div class="slide" id="s5">
-  <div class="s-head"><div class="s-head-title">시연 데모 (30초)</div><div class="s-num">5 / 7</div></div>
-  <div class="s-body">
-    <div class="demo-layout">
-      <div class="yt-area">
-        <a class="yt-thumb" href="https://youtu.be/yG2G5n4WWkw?si=ggq1dQqeLYxU3gKG" target="_blank">
-          <div class="yt-play">▶</div>
-          <div class="yt-label">시연 영상 재생</div>
-          <div class="yt-sub">클릭하면 유튜브에서 열립니다</div>
+  <div class="hd"><div class="hd-title">시연 데모 (30초)</div><div class="hd-n">5 / 7</div></div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="yt-col">
+        <a class="yt-main" href="https://youtu.be/yG2G5n4WWkw?si=ggq1dQqeLYxU3gKG" target="_blank">
+          <div class="yt-circle">▶</div>
+          <div class="yt-main-t">시연 영상 재생</div>
+          <div class="yt-main-s">클릭하면 유튜브에서 열립니다</div>
         </a>
         <a class="yt-btn" href="https://youtu.be/yG2G5n4WWkw?si=ggq1dQqeLYxU3gKG" target="_blank">▶ &nbsp; 유튜브에서 시연 영상 보기</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:13px;font-weight:700;color:#0D2B6B;margin-bottom:2px">시연 시나리오</div>
-        <div class="scenario-list">
-          <div class="sc-item"><div class="sc-num" style="background:#1A6FD4">1</div><div><div class="sc-title">홈 진입</div><div class="sc-desc">사기 경보 배너 자동 표시</div></div></div>
-          <div class="sc-item"><div class="sc-num" style="background:#0A7C42">2</div><div><div class="sc-title">상품 클릭</div><div class="sc-desc">안전점수 95/100 확인</div></div></div>
-          <div class="sc-item"><div class="sc-num" style="background:#1565C0">3</div><div><div class="sc-title">에스크로 요청</div><div class="sc-desc">안전결제 4단계 실제 동작</div></div></div>
-          <div class="sc-item" style="background:#FDF3E3"><div class="sc-num" style="background:#E65100">4</div><div><div class="sc-title">AI(에이아이) 사기 탐지 ← 핵심!</div><div class="sc-desc">"입금" 입력 → 경고 자동 표시</div></div></div>
-          <div class="sc-item"><div class="sc-num" style="background:#C0392B">5</div><div><div class="sc-title">신고 접수</div><div class="sc-desc">선입금 사기 → 긴급처리 안내</div></div></div>
-        </div>
-        <div class="impact-box">AI(에이아이) 사기 탐지는 제가 직접 사기를 당한 경험에서 출발했습니다. 선입금 유도 메시지를 실시간으로 차단하는 것이 이 앱의 핵심입니다.</div>
+      <div class="sc-col">
+        <div class="sc-label">시연 시나리오</div>
+        <div class="sc-item"><div class="sc-n" style="background:#1A6FD4">1</div><div><div class="sc-t">홈 진입</div><div class="sc-d">사기 경보 배너 자동 표시</div></div></div>
+        <div class="sc-item"><div class="sc-n" style="background:#0A7C42">2</div><div><div class="sc-t">상품 클릭</div><div class="sc-d">안전점수 95/100 확인</div></div></div>
+        <div class="sc-item"><div class="sc-n" style="background:#1565C0">3</div><div><div class="sc-t">에스크로 요청</div><div class="sc-d">안전결제 4단계 실제 동작</div></div></div>
+        <div class="sc-item highlight"><div class="sc-n" style="background:#C0390B">4</div><div><div class="sc-t">AI(에이아이) 사기 탐지 ← 핵심!</div><div class="sc-d">"입금" 입력 → 경고 자동 표시</div></div></div>
+        <div class="sc-item"><div class="sc-n" style="background:#C0392B">5</div><div><div class="sc-t">신고 접수</div><div class="sc-d">선입금 사기 → 긴급처리 안내</div></div></div>
+        <div class="impact">AI(에이아이) 사기 탐지는 제가 직접 사기를 당한 경험에서 출발했습니다. 선입금 유도 메시지를 실시간으로 차단하는 것이 이 앱의 핵심입니다.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 슬라이드 6 -->
+<!-- 슬6 개발환경 -->
 <div class="slide" id="s6">
-  <div class="s-head"><div class="s-head-title">개발환경 · 빌드/배포 · 테스트 · ADR(에이디알)</div><div class="s-num">6 / 7</div></div>
-  <div class="s-body">
-    <div class="four-section">
+  <div class="hd"><div class="hd-title">개발환경 · 빌드/배포 · 테스트 · ADR(에이디알)</div><div class="hd-n">6 / 7</div></div>
+  <div class="body">
+    <div class="four-grid">
       <div class="env-card">
-        <div class="env-card-title">개발 환경 설정</div>
-        <div class="code-box">
+        <div class="env-t">개발 환경 설정</div>
+        <div class="code-block">
           <p>$ npm install -g expo-cli eas-cli</p>
           <p>$ git clone [repo] && npm install</p>
           <p>$ cp .env.example .env</p>
@@ -289,90 +295,79 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0D2B6B;font-family:
         </div>
       </div>
       <div class="env-card">
-        <div class="env-card-title">빌드 & 배포</div>
-        <div class="build-steps">
-          <div class="build-step"><div class="build-n">1</div><div class="build-text"><strong>개발</strong> — npx expo start → Expo Go(엑스포 고) 즉시 확인</div></div>
-          <div class="build-step"><div class="build-n">2</div><div class="build-text"><strong>빌드</strong> — eas build --platform android --profile production</div></div>
-          <div class="build-step"><div class="build-n">3</div><div class="build-text"><strong>배포</strong> — APK(에이피케이) 다운로드 → 사용자 직접 설치</div></div>
-        </div>
+        <div class="env-t">빌드 & 배포</div>
+        <div class="build-step"><div class="build-n">1</div><div><div class="build-t">개발</div><div class="build-d">npx expo start → Expo Go(엑스포 고) 즉시 확인</div></div></div>
+        <div class="build-step"><div class="build-n">2</div><div><div class="build-t">빌드</div><div class="build-d">eas build --platform android --profile production</div></div></div>
+        <div class="build-step"><div class="build-n">3</div><div><div class="build-t">배포</div><div class="build-d">APK(에이피케이) 다운로드 → 사용자 직접 설치</div></div></div>
       </div>
       <div class="env-card">
-        <div class="env-card-title">테스트 결과</div>
-        <div class="test-row"><div class="test-badge" style="background:#0A7C42">단위 9개</div><div class="test-desc">안전점수, 신뢰등급, 사기키워드, 에스크로 상태전이 → <strong>9/9 Pass(패스)</strong></div></div>
-        <div class="test-row"><div class="test-badge" style="background:#1A6FD4">통합 1개</div><div class="test-desc">등록→채팅→에스크로→거래완료 전체 플로우 → <strong>1/1 Pass(패스)</strong></div></div>
-        <div style="font-size:11px;color:#9AA3BB;margin-top:4px">커버리지(커버리지) 72%</div>
+        <div class="env-t">테스트 결과</div>
+        <div class="test-row"><div class="test-badge" style="background:#0A7C42">단위 9개</div><div class="test-txt">안전점수, 신뢰등급, 사기키워드, 에스크로 상태전이<br>→ <strong>9/9 Pass(패스)</strong></div></div>
+        <div class="test-row"><div class="test-badge" style="background:#1A6FD4">통합 1개</div><div class="test-txt">등록→채팅→에스크로→거래완료 전체 플로우<br>→ <strong>1/1 Pass(패스)</strong> | 커버리지 72%</div></div>
       </div>
       <div class="env-card">
-        <div class="env-card-title">ADR(에이디알) 3개 요약</div>
-        <div class="adr-list">
-          <div class="adr-item"><div class="adr-name">ADR(에이디알)-0001 — React Native(리액트 네이티브)+Expo(엑스포)</div><div class="adr-why">이유: JS(자바스크립트) 숙련도 + 6주 내 크로스플랫폼</div><div class="adr-trade">트레이드오프: 네이티브 성능 일부 포기</div></div>
-          <div class="adr-item"><div class="adr-name">ADR(에이디알)-0002 — Zustand(주스탠드)</div><div class="adr-why">이유: Redux(리덕스) 대비 보일러플레이트 90% 감소</div><div class="adr-trade">트레이드오프: 대규모 앱 구조화 한계</div></div>
-          <div class="adr-item"><div class="adr-name">ADR(에이디알)-0003 — Firebase(파이어베이스)</div><div class="adr-why">이유: 실시간 채팅·인증·스토리지 즉시 구축</div><div class="adr-trade">트레이드오프: 벤더 의존성</div></div>
-        </div>
+        <div class="env-t">ADR(에이디알) 3개 요약</div>
+        <div class="adr-item"><div class="adr-name">ADR(에이디알)-0001 — React Native(리액트 네이티브)+Expo(엑스포)</div><div class="adr-why">이유: JS(자바스크립트) 숙련도 + 6주 내 크로스플랫폼 배포</div><div class="adr-trade">트레이드오프: 네이티브 성능 일부 포기</div></div>
+        <div class="adr-item"><div class="adr-name">ADR(에이디알)-0002 — Zustand(주스탠드)</div><div class="adr-why">이유: Redux(리덕스) 대비 보일러플레이트 90% 감소</div><div class="adr-trade">트레이드오프: 대규모 앱 구조화 한계</div></div>
+        <div class="adr-item"><div class="adr-name">ADR(에이디알)-0003 — Firebase(파이어베이스)</div><div class="adr-why">이유: 실시간 채팅·인증·스토리지 즉시 구축</div><div class="adr-trade">트레이드오프: 벤더 의존성</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 슬라이드 7 -->
+<!-- 슬7 마무리 -->
 <div class="slide" id="s7">
-  <h2>향후 활용 & 기대 효과</h2>
-  <div class="plan-grid">
-    <div class="plan-card"><div class="plan-head" style="background:#1A6FD4">단기 (졸업 전)</div><div class="plan-body">· Android(안드로이드) APK(에이피케이) 배포 완료<br>· Firebase(파이어베이스) 실 연동 → 실제 거래<br>· 포트폴리오 → 취업 활용</div></div>
-    <div class="plan-card"><div class="plan-head" style="background:#028090">중기 (취업 후)</div><div class="plan-body">· GPS(지피에스) 기반 안전 장소 추천<br>· AI(에이아이) 가격 추천 (시세 분석)<br>· 안전결제 PG(피지)사 연동</div></div>
-    <div class="plan-card"><div class="plan-head" style="background:#0A7C42">장기 (서비스화)</div><div class="plan-body">· 사기 피해자 제로 달성<br>· 사기 패턴 API(에이피아이) 서비스화<br>· 전국 PC(피씨) 중고거래 표준화</div></div>
+  <div style="position:absolute;top:-60px;right:-60px;width:360px;height:360px;background:rgba(26,111,212,.15);border-radius:50%"></div>
+  <div style="position:absolute;bottom:-60px;left:-60px;width:260px;height:260px;background:rgba(184,212,247,.07);border-radius:50%"></div>
+  <div style="position:relative;z-index:1">
+    <div class="s7-title">향후 활용 & 기대 효과</div>
+    <div class="plan-grid">
+      <div class="plan-card"><div class="plan-hd" style="background:#1A6FD4">단기 (졸업 전)</div><div class="plan-body">· Android(안드로이드) APK(에이피케이) 배포 완료<br>· Firebase(파이어베이스) 실 연동 → 실제 거래<br>· 포트폴리오 → 취업 활용</div></div>
+      <div class="plan-card"><div class="plan-hd" style="background:#028090">중기 (취업 후)</div><div class="plan-body">· GPS(지피에스) 기반 안전 장소 추천<br>· AI(에이아이) 가격 추천 (시세 분석)<br>· 안전결제 PG(피지)사 연동</div></div>
+      <div class="plan-card"><div class="plan-hd" style="background:#0A7C42">장기 (서비스화)</div><div class="plan-body">· 사기 피해자 제로 달성<br>· 사기 패턴 API(에이피아이) 서비스화<br>· 전국 PC(피씨) 중고거래 표준화</div></div>
+    </div>
+    <div class="expect">기대 효과: 중고거래 사기 피해 감소 · 안전한 거래 문화 정착 · PC(피씨) 부품 전문 거래 시장 활성화</div>
+    <div class="lesson">배운 점: 레이어드 아키텍처로 기능 추가가 쉬워짐 · AI(에이아이) 슬래시 명령으로 반복 작업 50% 절감 · AI(에이아이)가 만들어도 본인이 설명할 수 있어야 진짜 내 코드</div>
+    <div class="thanks">3학년 C반 | 2024136081 | 전은호 | 감사합니다</div>
   </div>
-  <div class="expect-box">기대 효과: 중고거래 사기 피해 감소 · 안전한 거래 문화 정착 · PC(피씨) 부품 전문 거래 시장 활성화</div>
-  <div class="lesson-box">
-    배운 점: 레이어드 아키텍처로 기능 추가가 쉬워짐 · AI(에이아이) 슬래시 명령으로 반복 작업 50% 절감 · AI(에이아이)가 만들어도 본인이 설명할 수 있어야 진짜 내 코드
-  </div>
-  <div class="thanks">3학년 C반 | 2024136081 | 전은호 | 감사합니다</div>
 </div>
 
-</div><!-- /deck -->
+</div>
 
 <!-- 네비 -->
 <div class="nav">
-  <button class="nav-btn" id="prevBtn" onclick="move(-1)">&#8592;</button>
-  <div class="nav-dots" id="dots"></div>
-  <button class="nav-btn" id="nextBtn" onclick="move(1)">&#8594;</button>
-  <div class="slide-counter" id="counter">1 / 7</div>
+  <button class="nbtn" onclick="move(-1)">&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" onclick="move(1)">&#8594;</button>
+  <div class="counter" id="counter">1 / 7</div>
 </div>
-
-<div class="hint">← → 키 또는 클릭으로 이동</div>
+<div class="hint">← → 키 또는 클릭</div>
 
 <script>
-var cur = 0;
-var slides = document.querySelectorAll('.slide');
-var total = slides.length;
-var dotsEl = document.getElementById('dots');
-
-// 점 생성
+var cur=0,total=7;
+var slides=document.querySelectorAll('.slide');
+var dotsEl=document.getElementById('dots');
 for(var i=0;i<total;i++){
   var d=document.createElement('div');
-  d.className='dot'+(i===0?' active':'');
+  d.className='dot'+(i===0?' on':'');
   d.setAttribute('data-i',i);
-  d.onclick=function(){goTo(parseInt(this.getAttribute('data-i')));};
+  d.onclick=function(){go(+this.getAttribute('data-i'));};
   dotsEl.appendChild(d);
 }
-
-function goTo(n){
-  slides[cur].classList.remove('active');
-  document.querySelectorAll('.dot')[cur].classList.remove('active');
+function go(n){
+  slides[cur].classList.remove('on');
+  document.querySelectorAll('.dot')[cur].classList.remove('on');
   cur=Math.max(0,Math.min(total-1,n));
-  slides[cur].classList.add('active');
-  document.querySelectorAll('.dot')[cur].classList.add('active');
+  slides[cur].classList.add('on');
+  document.querySelectorAll('.dot')[cur].classList.add('on');
   document.getElementById('counter').textContent=(cur+1)+' / '+total;
 }
-
-function move(d){goTo(cur+d);}
-
+function move(d){go(cur+d);}
 document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')move(1);
-  if(e.key==='ArrowLeft'||e.key==='ArrowUp')move(-1);
+  if(e.key==='ArrowRight'||e.key===' ')move(1);
+  if(e.key==='ArrowLeft')move(-1);
 });
-
-goTo(0);
+go(0);
 </script>
 </body>
 </html>
